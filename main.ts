@@ -1,17 +1,20 @@
-input.onButtonPressed(Button.A, function () {
-    images.iconImage(IconNames.Chessboard).showImage(0)
-    control.waitMicros(360000)
-})
+let Moist1 = 0
 basic.showIcon(IconNames.Umbrella)
+music.startMelody(music.builtInMelody(Melodies.Entertainer), MelodyOptions.Once)
 basic.forever(function () {
-    while (true) {
-        if (50 > pins.analogReadPin(AnalogPin.P0)) {
-            soundExpression.giggle.playUntilDone()
-            led.plotBarGraph(
-            pins.analogReadPin(AnalogPin.P0),
-            100
-            )
-        }
-        control.waitMicros(10000)
+    Moist1 = pins.analogReadPin(AnalogPin.P1)
+    led.plotBarGraph(
+    Moist1,
+    1023
+    )
+    if (input.buttonIsPressed(Button.A)) {
+        basic.showNumber(Moist1)
     }
+    if (Moist1 < 500) {
+        music.playTone(262, music.beat(BeatFraction.Whole))
+        music.playTone(196, music.beat(BeatFraction.Whole))
+        basic.showIcon(IconNames.Umbrella)
+        basic.pause(5000)
+    }
+    basic.pause(1000)
 })
