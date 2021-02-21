@@ -8,13 +8,17 @@ basic.forever(function () {
     1023
     )
     if (input.buttonIsPressed(Button.A)) {
+        basic.showString("  ")
         basic.showNumber(Moist1)
     }
-    if (Moist1 < 500) {
-        music.playTone(262, music.beat(BeatFraction.Whole))
-        music.playTone(196, music.beat(BeatFraction.Whole))
+    if (Moist1 >= 650) {
         basic.showIcon(IconNames.Umbrella)
-        basic.pause(5000)
+        music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.Once)
+        basic.showString("  ")
+        basic.showNumber(Moist1)
     }
-    basic.pause(1000)
+    if (input.buttonIsPressed(Button.B)) {
+        music.setVolume(0)
+    }
+    basic.pause(5000)
 })
